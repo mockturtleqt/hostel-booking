@@ -1,16 +1,17 @@
-package com.epam.javalab.hostelbooking.bean;
+package com.epam.javalab.hostelbooking.domain;
 
-import com.epam.javalab.hostelbooking.bean.type.GenderType;
+import com.epam.javalab.hostelbooking.domain.type.GenderType;
 
 public class User extends Entity {
     private int id;
     private String firstName;
     private String lastName;
     private String email;
+    private String login;
     private String password;
     private GenderType gender;
     private int age;
-    private int cardNumber;
+    private long cardNumber;
 
     public User() {
 
@@ -72,11 +73,19 @@ public class User extends Entity {
         this.age = age;
     }
 
-    public int getCardNumber() {
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public long getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(int cardNumber) {
+    public void setCardNumber(long cardNumber) {
         this.cardNumber = cardNumber;
     }
 
@@ -93,6 +102,7 @@ public class User extends Entity {
         if (!firstName.equals(user.firstName)) return false;
         if (!lastName.equals(user.lastName)) return false;
         if (!email.equals(user.email)) return false;
+        if (!login.equals(user.login)) return false;
         if (!password.equals(user.password)) return false;
         return gender == user.gender;
     }
@@ -103,10 +113,11 @@ public class User extends Entity {
         result = 31 * result + firstName.hashCode();
         result = 31 * result + lastName.hashCode();
         result = 31 * result + email.hashCode();
+        result = 31 * result + login.hashCode();
         result = 31 * result + password.hashCode();
         result = 31 * result + (gender != null ? gender.hashCode() : 0);
         result = 31 * result + age;
-        result = 31 * result + cardNumber;
+        result = 31 * result + (int) (cardNumber ^ (cardNumber >>> 32));
         return result;
     }
 
@@ -117,6 +128,7 @@ public class User extends Entity {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", gender=" + gender +
                 ", age=" + age +

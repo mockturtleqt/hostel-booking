@@ -1,4 +1,4 @@
-package com.epam.javalab.hostelbooking.bean;
+package com.epam.javalab.hostelbooking.domain;
 
 public class Place extends Entity {
     private int id;

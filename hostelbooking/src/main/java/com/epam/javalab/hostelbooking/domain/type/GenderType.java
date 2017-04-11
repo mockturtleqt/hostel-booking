@@ -1,4 +1,4 @@
-package com.epam.javalab.hostelbooking.bean.type;
+package com.epam.javalab.hostelbooking.domain.type;
 
 public enum GenderType {
     MALE, FEMALE
