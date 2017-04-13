@@ -1,5 +1,4 @@
 package com.epam.javalab.hostelbooking;
 
-
-public class MathApplicationTester {
+public class SampleDbTest {
 }

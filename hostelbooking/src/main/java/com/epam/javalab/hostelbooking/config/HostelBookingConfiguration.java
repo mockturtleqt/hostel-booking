@@ -1,6 +1,7 @@
-package com.epam.javalab.hostelbooking.util.jdbc;
+package com.epam.javalab.hostelbooking.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,7 +11,7 @@ import javax.sql.DataSource;
 import java.util.ResourceBundle;
 
 @Configuration
-@ImportResource("classpath:Spring.xml")
+@ComponentScan("com.epam.javalab.hostelbooking")
 public class SpringJDBCConfiguration {
     private static final String DATABASE_BUNDLE = "properties.db";
     private static final String DATABASE_DRIVER = "jdbc.driverClassName";
