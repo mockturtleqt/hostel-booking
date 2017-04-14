@@ -8,11 +8,15 @@ import org.springframework.stereotype.Repository;
 @Repository("bookingDao")
 public class BookingDaoImpl implements BookingDao {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Override
-    public void getBook() {
-
+    public BookingDaoImpl() {
     }
+
+    @Autowired
+    public BookingDaoImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+
 }

@@ -12,6 +12,7 @@ public class User extends Entity {
     private GenderType gender;
     private int age;
     private long cardNumber;
+    private String resetKey;
 
     public User() {
 
@@ -87,6 +88,14 @@ public class User extends Entity {
 
     public void setCardNumber(long cardNumber) {
         this.cardNumber = cardNumber;
+    }
+
+    public String getResetKey() {
+        return resetKey;
+    }
+
+    public void setResetKey(String resetKey) {
+        this.resetKey = resetKey;
     }
 
     @Override

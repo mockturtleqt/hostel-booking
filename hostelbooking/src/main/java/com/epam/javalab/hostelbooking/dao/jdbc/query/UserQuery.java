@@ -1,4 +1,4 @@
-package com.epam.javalab.hostelbooking.util.jdbc.query;
+package com.epam.javalab.hostelbooking.dao.jdbc.query;
 
 public class UserQuery {
     public static final String SQL_FIND_ALL_USERS = "SELECT user_id, user_first_name, " +

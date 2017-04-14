@@ -3,8 +3,8 @@ package com.epam.javalab.hostelbooking.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
 
 @Configuration
 @ComponentScan("com.epam.javalab.hostelbooking")
-public class SpringJDBCConfiguration {
+public class HostelBookingConfiguration {
     private static final String DATABASE_BUNDLE = "properties.db";
     private static final String DATABASE_DRIVER = "jdbc.driverClassName";
     private static final String DATABASE_URL = "jdbc.url";
@@ -35,6 +35,11 @@ public class SpringJDBCConfiguration {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
+    }
+
+    @Bean
+    public SimpleJdbcInsert simpleJdbcInsert() {
+        return new SimpleJdbcInsert(dataSource());
     }
 
 }

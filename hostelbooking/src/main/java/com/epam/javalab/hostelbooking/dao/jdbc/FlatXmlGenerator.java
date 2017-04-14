@@ -1,4 +1,4 @@
-package com.epam.javalab.hostelbooking.util.jdbc;
+package com.epam.javalab.hostelbooking.dao.jdbc;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

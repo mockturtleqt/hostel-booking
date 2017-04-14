@@ -1,19 +1,23 @@
 package com.epam.javalab.hostelbooking.dao;
 
+import com.epam.javalab.hostelbooking.dao.exception.DaoException;
 import com.epam.javalab.hostelbooking.domain.User;
 
 import java.util.List;
 
 public interface UserDao {
-    //User getUserName(String login, String password);
 
-    User createUser(User user);
+    User createUser(User user) throws DaoException;
 
-    User findUserByLoginAndPassword(String login, String password);
+    User findUserById(int id) throws DaoException;
 
-    List<User> findAllUsers();
+    User findUserByLoginAndPassword(String login, String password) throws DaoException;
 
-    User updateUser(User user);
+    List<User> findAllUsers() throws DaoException;
 
-
+    User updateUserProfile(User user) throws DaoException;
+//
+//    boolean updateUserPassword(User user, String password);
+//
+//    boolean setResetKey(User user, String resetKey);
 }
