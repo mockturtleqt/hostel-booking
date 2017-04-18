@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 @Configuration
 @ComponentScan("com.epam.javalab.hostelbooking")
 public class HostelBookingConfiguration {
-    private static final String DATABASE_BUNDLE = "properties.db";
+    private static final String DATABASE_BUNDLE = "db";
     private static final String DATABASE_DRIVER = "jdbc.driverClassName";
     private static final String DATABASE_URL = "jdbc.url";
     private static final String DATABASE_USERNAME = "jdbc.username";

@@ -24,6 +24,9 @@ public class PlaceServiceImplTest {
     private PlaceServiceImpl placeService;
 
     private List<Place> appartments = new ArrayList<>();
+    private List<Place> grodnoApartments = new ArrayList<>();
+    private List<Place> minskApartments = new ArrayList<>();
+
     private Place placeMinsk;
     private Place placeGrodno;
 
@@ -34,12 +37,14 @@ public class PlaceServiceImplTest {
         placeMinsk.setCity("Minsk");
         placeMinsk.setMaxPeople(4);
         appartments.add(placeMinsk);
+        minskApartments.add(placeMinsk);
 
         placeGrodno = new Place();
         placeGrodno.setId(2);
         placeGrodno.setCity("Grodno");
         placeGrodno.setMaxPeople(1);
         appartments.add(placeGrodno);
+        grodnoApartments.add(placeGrodno);
 
     }
 
@@ -52,15 +57,15 @@ public class PlaceServiceImplTest {
 
     @Test
     public void findPlaceByCity() throws Exception {
-        when(placeDao.findPlaceByCity("Grodno")).thenReturn(placeGrodno);
-        Place testPlace = placeService.findPlaceByCity("Grodno");
+        when(placeDao.findPlaceByCity("Grodno")).thenReturn(grodnoApartments);
+        Place testPlace = placeService.findPlaceByCity("Grodno").get(0);
         assertEquals(testPlace.getId(), placeGrodno.getId());
     }
 
     @Test
     public void findPlaceByMaxPeople() throws Exception {
-        when(placeDao.findPlaceByMaxPeopleCount(4)).thenReturn(placeMinsk);
-        Place testPlace = placeService.findPlaceByMaxPeople(4);
+        when(placeDao.findPlaceByMaxPeopleCount(4)).thenReturn(minskApartments);
+        Place testPlace = placeService.findPlaceByMaxPeople(4).get(0);
         assertEquals(testPlace.getId(), placeMinsk.getId());
     }
 

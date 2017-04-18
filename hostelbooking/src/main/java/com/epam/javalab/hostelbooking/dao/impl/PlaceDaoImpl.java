@@ -45,9 +45,9 @@ public class PlaceDaoImpl implements PlaceDao {
     }
 
     @Override
-    public Place findPlaceByCity(String city) throws DaoException {
+    public List<Place> findPlaceByCity(String city) throws DaoException {
         try {
-            return jdbcTemplate.queryForObject(SQL_FIND_APARTMENT_BY_CITY,
+            return jdbcTemplate.query(SQL_FIND_APARTMENT_BY_CITY,
                     new Object[]{city}, new PlaceMapper());
         } catch (DataAccessException e) {
             throw new DaoException("Cannot find place ", e);
@@ -55,9 +55,9 @@ public class PlaceDaoImpl implements PlaceDao {
     }
 
     @Override
-    public Place findPlaceByMaxPeopleCount(int maxPeopleCount) throws DaoException {
+    public List<Place> findPlaceByMaxPeopleCount(int maxPeopleCount) throws DaoException {
         try {
-            return jdbcTemplate.queryForObject(SQL_FIND_APARTMANT_BY_MAX_PEOPLE_COUNT,
+            return jdbcTemplate.query(SQL_FIND_APARTMANT_BY_MAX_PEOPLE_COUNT,
                     new Object[]{maxPeopleCount}, new PlaceMapper());
         } catch (DataAccessException e) {
             throw new DaoException("Cannot find place ", e);

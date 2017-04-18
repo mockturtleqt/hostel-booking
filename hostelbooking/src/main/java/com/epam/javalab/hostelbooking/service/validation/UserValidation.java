@@ -72,11 +72,6 @@ public class UserValidation {
         return (isStringValid(password) && password.matches(PASSWORD_PATTERN));
     }
 
-//    private boolean isGenderValid(String gender) {
-//        return GenderType.MALE.name().equalsIgnoreCase(gender) ||
-//                GenderType.FEMALE.name().equalsIgnoreCase(gender);
-//    }
-
     private boolean isAgeValid(int age) {
         return age >= MIN_AGE && age <= MAX_AGE;
     }

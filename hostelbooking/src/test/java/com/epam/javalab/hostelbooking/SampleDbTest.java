@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 
 public class SampleDbTest extends DBTestCase {
     private static final Logger logger = LogManager.getLogger();
-    private static final String DATABASE_BUNDLE = "properties.db";
+    private static final String DATABASE_BUNDLE = "testdb";
     private static final String DATABASE_DRIVER = "jdbc.driverClassName";
     private static final String DATABASE_URL = "jdbc.url";
     private static final String DATABASE_USERNAME = "jdbc.username";

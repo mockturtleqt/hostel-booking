@@ -33,7 +33,7 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public Place findPlaceByCity(String city) throws ServiceException {
+    public List<Place> findPlaceByCity(String city) throws ServiceException {
         try {
             return placeDao.findPlaceByCity(city);
         } catch (DaoException e) {
@@ -42,7 +42,7 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public Place findPlaceByMaxPeople(int maxPeopleCount) throws ServiceException {
+    public List<Place> findPlaceByMaxPeople(int maxPeopleCount) throws ServiceException {
         try {
             return placeDao.findPlaceByMaxPeopleCount(maxPeopleCount);
         } catch (DaoException e) {

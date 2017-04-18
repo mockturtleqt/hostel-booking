@@ -10,7 +10,7 @@ public interface PlaceDao {
 
     Place findPlaceById(int id) throws DaoException;
 
-    Place findPlaceByCity(String city) throws DaoException;
+    List<Place> findPlaceByCity(String city) throws DaoException;
 
-    Place findPlaceByMaxPeopleCount(int maxPeopleCount) throws DaoException;
+    List<Place> findPlaceByMaxPeopleCount(int maxPeopleCount) throws DaoException;
 }

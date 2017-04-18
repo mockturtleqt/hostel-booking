@@ -12,6 +12,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -72,13 +73,15 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void generateResetKey() throws Exception {
-
-    }
-
-    @Test
     public void resetUserPassword() throws Exception {
+        when(userDao.findUserById(user.getId())).thenReturn(user);
+        when(userDao.updateUserProfile(user)).thenReturn(user);
+        when(userDao.updateUserProfile(updatedUser)).thenReturn(updatedUser);
+        String resetKey = userService.generateResetKey(user.getId(), user.getLogin(), user.getEmail());
+        user.setResetKey(resetKey);
 
+        boolean success = userService.resetUserPassword(user.getId(), user.getResetKey(), "Mockturtle123");
+        assertTrue(success);
     }
 
     @Test

@@ -8,13 +8,13 @@
            PLACE_STREET="07 Shoshone Drive"/>
     <PLACE PLACE_ID="268" PLACE_OWNER_ID="150" PLACE_NAME="est" PLACE_MAX_PEOPLE="5"
            PLACE_DESCRIPTION="Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat."
-           PLACE_COST="64.18" PLACE_COUNTRY="Argentina" PLACE_CITY="Jard&#237;n Am&#233;rica"
+           PLACE_COST="64.18" PLACE_COUNTRY="Argentina" PLACE_CITY="Jarica"
            PLACE_STREET="7 Homewood Pass"/>
     <PLACE PLACE_ID="269" PLACE_OWNER_ID="143" PLACE_NAME="accumsan tortor" PLACE_MAX_PEOPLE="2"
            PLACE_DESCRIPTION="Nulla mollis molestie lorem." PLACE_COST="37.77" PLACE_COUNTRY="China"
            PLACE_CITY="Huaicheng" PLACE_STREET="27 Scoville Drive"/>
     <PLACE PLACE_ID="270" PLACE_OWNER_ID="148" PLACE_NAME="pulvinar lobortis est" PLACE_MAX_PEOPLE="4"
            PLACE_DESCRIPTION="Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo."
-           PLACE_COST="93.85" PLACE_COUNTRY="France" PLACE_CITY="Paris La D&#233;fense"
+           PLACE_COST="93.85" PLACE_COUNTRY="France" PLACE_CITY="Paris La Dfense"
            PLACE_STREET="06784 Rusk Parkway"/>
 </dataset>

@@ -8,7 +8,7 @@ import java.util.List;
 public interface PlaceService {
     List<Place> findAll() throws ServiceException;
 
-    Place findPlaceByCity(String city) throws ServiceException;
+    List<Place> findPlaceByCity(String city) throws ServiceException;
 
-    Place findPlaceByMaxPeople(int maxPeopleCount) throws ServiceException;
+    List<Place> findPlaceByMaxPeople(int maxPeopleCount) throws ServiceException;
 }
