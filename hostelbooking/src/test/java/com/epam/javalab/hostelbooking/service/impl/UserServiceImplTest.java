@@ -2,13 +2,12 @@ package com.epam.javalab.hostelbooking.service.impl;
 
 import com.epam.javalab.hostelbooking.dao.UserDao;
 import com.epam.javalab.hostelbooking.domain.User;
-import com.epam.javalab.hostelbooking.service.UserService;
+import com.epam.javalab.hostelbooking.service.exception.ServiceException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
@@ -51,29 +50,35 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void createUser() throws Exception {
+    public void createUser_ValidUserGiven_ShouldReturnCreatedUser() throws Exception {
         when(userDao.createUser(user)).thenReturn(user);
         User testUser = userService.createUser(user);
-        assertEquals(testUser.getId(), user.getId());
+        assertEquals(user.getId(), testUser.getId());
     }
 
     @Test
-    public void findUserByLoginAndPassword() throws Exception {
+    public void findUserByLoginAndPassword_ValidCredentialsGiven_ShouldReturnUser() throws Exception {
         when(userDao.findUserByLoginAndPassword(user.getLogin(), user.getPassword())).thenReturn(user);
         User testUser = userService.findUserByLoginAndPassword(user.getLogin(), user.getPassword());
-        assertEquals(testUser.getId(), user.getId());
+        assertEquals(user.getId(), testUser.getId());
+    }
+
+    @Test(expected = ServiceException.class)
+    public void findUserByLoginAndPassword_InvalidCredentialsGiven_ShouldThrowServiceException() throws Exception {
+        when(userDao.findUserByLoginAndPassword(user.getLogin(), user.getPassword())).thenThrow(ServiceException.class);
+        userService.findUserByLoginAndPassword(user.getLogin(), user.getPassword());
     }
 
     @Test
-    public void changeUserPassword() throws Exception {
+    public void changeUserPassword_ValidCredentialsGiven_ShouldChangePassword() throws Exception {
         when(userDao.findUserById(user.getId())).thenReturn(user);
         when(userDao.updateUserProfile(updatedUser)).thenReturn(updatedUser);
         User testUser = userService.changeUserPassword(user.getId(), "Mockturtle123");
-        assertEquals(testUser.getPassword(), user.getPassword());
+        assertEquals(user.getPassword(), testUser.getPassword());
     }
 
     @Test
-    public void resetUserPassword() throws Exception {
+    public void resetUserPassword_ValidCredentialsGiven_ShouldResetPassword() throws Exception {
         when(userDao.findUserById(user.getId())).thenReturn(user);
         when(userDao.updateUserProfile(user)).thenReturn(user);
         when(userDao.updateUserProfile(updatedUser)).thenReturn(updatedUser);
@@ -85,10 +90,10 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void updateUserProfile() throws Exception {
+    public void updateUserProfile_ValidCredentialsGiven_ShouldUpdateProfile() throws Exception {
         when(userDao.updateUserProfile(user)).thenReturn(user);
         User updatedUSer = userService.updateUserProfile(user);
-        assertEquals(updatedUSer.getFirstName(), "Galia");
+        assertEquals("Galia", updatedUSer.getFirstName());
         verify(userDao).updateUserProfile(user);
     }
 

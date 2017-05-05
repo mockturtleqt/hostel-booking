@@ -6,7 +6,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
-import sun.nio.ch.IOUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,7 +34,8 @@ public class PlaceMapper implements RowMapper<Place> {
         place.setOwnerId(resultSet.getInt(PLACE_OWNER_ID));
         place.setName(resultSet.getString(PLACE_NAME));
         place.setMaxPeople(resultSet.getInt(PLACE_MAX_PEOPLE));
-        place.setDescription(clobToString(resultSet.getClob(PLACE_DESCRIPTION)));
+//        place.setDescription(clobToString(resultSet.getClob(PLACE_DESCRIPTION)));
+        place.setDescription(resultSet.getString(PLACE_DESCRIPTION));
         place.setCost(resultSet.getFloat(PLACE_COST));
         place.setCountry(resultSet.getString(PLACE_COUNTRY));
         place.setCity(resultSet.getString(PLACE_CITY));

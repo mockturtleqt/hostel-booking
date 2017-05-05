@@ -5,7 +5,6 @@ import com.epam.javalab.hostelbooking.dao.exception.DaoException;
 import com.epam.javalab.hostelbooking.dao.mapper.PlaceMapper;
 import com.epam.javalab.hostelbooking.domain.Place;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -27,40 +26,44 @@ public class PlaceDaoImpl implements PlaceDao {
 
     @Override
     public List<Place> findAll() throws DaoException {
-        try {
-            return jdbcTemplate.query(SQL_FIND_ALL_APARTMENTS, new PlaceMapper());
-        } catch (DataAccessException e) {
-            throw new DaoException("Cannot find place ", e);
+        List<Place> places = jdbcTemplate.query(SQL_FIND_ALL_APARTMENTS, new PlaceMapper());
+        if (!places.isEmpty()) {
+            return places;
+        } else {
+            throw new DaoException("There are no apartments");
         }
     }
 
     @Override
     public Place findPlaceById(int id) throws DaoException {
-        try {
-            return jdbcTemplate.queryForObject(SQL_FIND_APARTMENT_BY_ID,
-                    new Object[]{id}, new PlaceMapper());
-        } catch (DataAccessException e) {
-            throw new DaoException("Cannot find place ", e);
+        List<Place> places = jdbcTemplate.query(SQL_FIND_APARTMENT_BY_ID,
+                new Object[]{id}, new PlaceMapper());
+        if (!places.isEmpty()) {
+            return places.get(0);
+        } else {
+            throw new DaoException("Cannot find this apartment ");
         }
     }
 
     @Override
     public List<Place> findPlaceByCity(String city) throws DaoException {
-        try {
-            return jdbcTemplate.query(SQL_FIND_APARTMENT_BY_CITY,
-                    new Object[]{city}, new PlaceMapper());
-        } catch (DataAccessException e) {
-            throw new DaoException("Cannot find place ", e);
+        List<Place> places = jdbcTemplate.query(SQL_FIND_APARTMENT_BY_CITY,
+                new Object[]{city}, new PlaceMapper());
+        if (!places.isEmpty()) {
+            return places;
+        } else {
+            throw new DaoException("Cannot find an apartment in " + city);
         }
     }
 
     @Override
     public List<Place> findPlaceByMaxPeopleCount(int maxPeopleCount) throws DaoException {
-        try {
-            return jdbcTemplate.query(SQL_FIND_APARTMANT_BY_MAX_PEOPLE_COUNT,
-                    new Object[]{maxPeopleCount}, new PlaceMapper());
-        } catch (DataAccessException e) {
-            throw new DaoException("Cannot find place ", e);
+        List<Place> places = jdbcTemplate.query(SQL_FIND_APARTMANT_BY_MAX_PEOPLE_COUNT,
+                new Object[]{maxPeopleCount}, new PlaceMapper());
+        if (!places.isEmpty()) {
+            return places;
+        } else {
+            throw new DaoException("Cannot find an apartment for " + maxPeopleCount + " people");
         }
     }
 

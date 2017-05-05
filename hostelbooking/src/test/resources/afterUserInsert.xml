@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <USERS USER_FIRST_NAME="Nikita" USER_LAST_NAME="Sterlus" USER_EMAIL="nikita" USER_PASSWORD="Nikitushka123"
+           USER_GENDER="MALE" USER_AGE="20" USER_CARD_NUMBER="3561" USER_LOGIN="nikita"/>
+</dataset>

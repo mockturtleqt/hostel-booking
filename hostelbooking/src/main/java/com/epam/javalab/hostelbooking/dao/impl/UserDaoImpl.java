@@ -5,7 +5,6 @@ import com.epam.javalab.hostelbooking.dao.exception.DaoException;
 import com.epam.javalab.hostelbooking.dao.mapper.UserMapper;
 import com.epam.javalab.hostelbooking.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -27,56 +26,65 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User createUser(User user) throws DaoException {
-        try {
-            //TODO add auto-generated id
-            jdbcTemplate.update(SQL_INSERT_USER, user.getFirstName(), user.getLastName(),
-                    user.getEmail(), user.getLogin(), user.getPassword(), user.getGender(), user.getAge(),
-                    user.getCardNumber());
-            return user;
-        } catch (DataAccessException e) {
-            throw new DaoException("Cannot create user ", e);
-        }
+        jdbcTemplate.update(SQL_INSERT_USER, user.getFirstName(), user.getLastName(),
+                user.getEmail(), user.getLogin(), user.getPassword(), user.getGender().name(), user.getAge(),
+                user.getCardNumber());
+        return user;
+//        try {
+//            //TODO add getting auto-generated id
+//            jdbcTemplate.update(SQL_INSERT_USER, user.getFirstName(), user.getLastName(),
+//                    user.getEmail(), user.getLogin(), user.getPassword(), user.getGender().name(), user.getAge(),
+//                    user.getCardNumber());
+//            return user;
+//        } catch (DataAccessException e) {
+//            throw new DaoException("Cannot create user ", e);
+//        }
     }
 
     @Override
     public User findUserById(int id) throws DaoException {
-        try {
-            return jdbcTemplate.queryForObject(SQL_FIND_USER_BY_ID,
-                    new Object[]{id}, new UserMapper());
-        } catch (DataAccessException e) {
-            throw new DaoException("Cannot find user ", e);
+        List<User> users = jdbcTemplate.query(SQL_FIND_USER_BY_ID, new Object[]{id}, new UserMapper());
+        if (!users.isEmpty()) {
+            return users.get(0);
+        } else {
+            throw new DaoException("Cannot find this user");
         }
-
     }
 
     @Override
     public User findUserByLoginAndPassword(String login, String password) throws DaoException {
-        try {
-            return jdbcTemplate.queryForObject(SQL_FIND_USER_BY_LOGIN_AND_PASSWORD,
-                    new Object[]{login, password}, new UserMapper());
-        } catch (DataAccessException e) {
-            throw new DaoException("Cannot find user ", e);
+        List<User> users = jdbcTemplate.query(SQL_FIND_USER_BY_LOGIN_AND_PASSWORD,
+                new Object[]{login, password}, new UserMapper());
+        if (!users.isEmpty()) {
+            return users.get(0);
+        } else {
+            throw new DaoException("Cannot find this user");
         }
     }
 
     @Override
     public List<User> findAllUsers() throws DaoException {
-        try {
-            return jdbcTemplate.query(SQL_FIND_ALL_USERS, new UserMapper());
-        } catch (DataAccessException e) {
-            throw new DaoException("Cannot find user ", e);
+        List<User> users = jdbcTemplate.query(SQL_FIND_ALL_USERS, new UserMapper());
+        if (!users.isEmpty()) {
+            return users;
+        } else {
+            throw new DaoException("There are no users in database");
         }
     }
 
     @Override
     public User updateUserProfile(User user) throws DaoException {
-        try {
-            jdbcTemplate.update(SQL_UPDATE_USER_PROFILE, user.getFirstName(), user.getLastName(),
-                    user.getEmail(), user.getLogin(), user.getPassword(), user.getResetKey(),
-                    user.getGender(), user.getAge(), user.getCardNumber(), user.getId());
-            return user;
-        } catch (DataAccessException e) {
-            throw new DaoException("Cannot create user ", e);
-        }
+        jdbcTemplate.update(SQL_UPDATE_USER_PROFILE, user.getFirstName(), user.getLastName(),
+                user.getEmail(), user.getLogin(), user.getPassword(), user.getResetKey(),
+                user.getGender().name(), user.getAge(), user.getCardNumber(), user.getId());
+        return user;
+//        try {
+//            jdbcTemplate.update(SQL_UPDATE_USER_PROFILE, user.getFirstName(), user.getLastName(),
+//                    user.getEmail(), user.getLogin(), user.getPassword(), user.getResetKey(),
+//                    user.getGender().name(), user.getAge(), user.getCardNumber(), user.getId());
+//            return user;
+//        } catch (DataAccessException e) {
+//            throw new DaoException("Cannot update user ", e);
+//        }
     }
 }

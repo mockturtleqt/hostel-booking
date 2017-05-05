@@ -1,13 +1,10 @@
 package com.epam.javalab.hostelbooking.service.validation;
 
 import com.epam.javalab.hostelbooking.domain.User;
-import com.epam.javalab.hostelbooking.service.exception.ValidationException;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class UserValidationTest {
 
@@ -38,15 +35,15 @@ public class UserValidationTest {
     }
 
     @Test
-    public void isValid_invalidName_False() throws Exception {
+    public void isValid_InvalidNameGiven_ShouldReturnFalse() throws Exception {
         userValidation.isValid(incorrectUser);
-        assertEquals(userValidation.getExceptions().size(), 1);
+        assertEquals(1, userValidation.getExceptions().size());
     }
 
     @Test
-    public void isValid_validUser_True() throws Exception {
+    public void isValid_ValidUserGiven_ShouldReturnTrue() throws Exception {
         userValidation.isValid(correctUser);
-        assertEquals(userValidation.getExceptions().size(), 0);
+        assertEquals(0, userValidation.getExceptions().size());
     }
 
 }
