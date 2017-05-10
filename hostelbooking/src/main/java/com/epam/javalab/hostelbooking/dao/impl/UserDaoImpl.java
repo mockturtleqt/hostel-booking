@@ -25,7 +25,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User createUser(User user) throws DaoException {
+    public User add(User user) throws DaoException {
         jdbcTemplate.update(SQL_INSERT_USER, user.getFirstName(), user.getLastName(),
                 user.getEmail(), user.getLogin(), user.getPassword(), user.getGender().name(), user.getAge(),
                 user.getCardNumber());
@@ -42,7 +42,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findUserById(int id) throws DaoException {
+    public User findById(int id) throws DaoException {
         List<User> users = jdbcTemplate.query(SQL_FIND_USER_BY_ID, new Object[]{id}, new UserMapper());
         if (!users.isEmpty()) {
             return users.get(0);
@@ -52,7 +52,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findUserByLoginAndPassword(String login, String password) throws DaoException {
+    public User findByLoginAndPassword(String login, String password) throws DaoException {
         List<User> users = jdbcTemplate.query(SQL_FIND_USER_BY_LOGIN_AND_PASSWORD,
                 new Object[]{login, password}, new UserMapper());
         if (!users.isEmpty()) {
@@ -63,7 +63,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findAllUsers() throws DaoException {
+    public List<User> findAll() throws DaoException {
         List<User> users = jdbcTemplate.query(SQL_FIND_ALL_USERS, new UserMapper());
         if (!users.isEmpty()) {
             return users;
@@ -73,7 +73,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User updateUserProfile(User user) throws DaoException {
+    public User update(User user) throws DaoException {
         jdbcTemplate.update(SQL_UPDATE_USER_PROFILE, user.getFirstName(), user.getLastName(),
                 user.getEmail(), user.getLogin(), user.getPassword(), user.getResetKey(),
                 user.getGender().name(), user.getAge(), user.getCardNumber(), user.getId());

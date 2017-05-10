@@ -58,41 +58,41 @@ public class PlaceDaoImplTest {
 
     @Test
     @DatabaseSetup({"classpath:userDataSet.xml", "classpath:placeDataSet.xml"})
-    public void findPlaceById_ExistingIdGiven_ShouldReturnPlace() throws DaoException {
-        Place place = placeDao.findPlaceById(1);
+    public void findById_ExistingIdGiven_ShouldReturnPlace() throws DaoException {
+        Place place = placeDao.findById(1);
         assertEquals("Palekastro", place.getCity());
     }
 
     @Test(expected = DaoException.class)
     @DatabaseSetup({"classpath:userDataSet.xml", "classpath:placeDataSet.xml"})
-    public void findPlaceById_NonExistingIdGiven_ShouldThrowDaoException() throws DaoException {
-        Place place = placeDao.findPlaceById(-3);
+    public void findById_NonExistingIdGiven_ShouldThrowDaoException() throws DaoException {
+        Place place = placeDao.findById(-3);
     }
 
     @Test
     @DatabaseSetup({"classpath:userDataSet.xml", "classpath:placeDataSet.xml"})
-    public void findPlaceByCity_ExistingCityGiven_ShouldReturnPlaceList() throws DaoException {
-        List<Place> places = placeDao.findPlaceByCity("Palekastro");
+    public void findByCity_ExistingCityGiven_ShouldReturnPlaceList() throws DaoException {
+        List<Place> places = placeDao.findByCity("Palekastro");
         assertEquals(1, places.size());
     }
 
     @Test(expected = DaoException.class)
     @DatabaseSetup({"classpath:userDataSet.xml", "classpath:placeDataSet.xml"})
-    public void findPlaceByCity_NonExistingCityGiven_ShouldThrowDaoException() throws DaoException {
-        placeDao.findPlaceByCity("Lalaland");
+    public void findByCity_NonExistingCityGiven_ShouldThrowDaoException() throws DaoException {
+        placeDao.findByCity("Lalaland");
     }
 
     @Test
     @DatabaseSetup({"classpath:userDataSet.xml", "classpath:placeDataSet.xml"})
-    public void findPlaceByMaxPeopleCount_ExistingCapacityGiven_ShouldReturnPlaceList() throws DaoException {
-        List<Place> places = placeDao.findPlaceByMaxPeopleCount(4);
+    public void findByMaxPeopleCount_ExistingCapacityGiven_ShouldReturnPlaceList() throws DaoException {
+        List<Place> places = placeDao.findByMaxPeopleCount(4);
         assertEquals(4, places.size());
     }
 
     @Test(expected = DaoException.class)
     @DatabaseSetup({"classpath:userDataSet.xml", "classpath:placeDataSet.xml"})
-    public void findPlaceByMaxPeopleCount_NonExistingCapacityGiven_ShouldThrowDaoException() throws DaoException {
-        placeDao.findPlaceByMaxPeopleCount(120);
+    public void findByMaxPeopleCount_NonExistingCapacityGiven_ShouldThrowDaoException() throws DaoException {
+        placeDao.findByMaxPeopleCount(120);
     }
 
 }

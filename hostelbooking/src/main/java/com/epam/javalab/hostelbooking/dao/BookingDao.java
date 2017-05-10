@@ -1,5 +1,7 @@
 package com.epam.javalab.hostelbooking.dao;
 
-public interface BookingDao {
+import com.epam.javalab.hostelbooking.domain.Booking;
+
+public interface BookingDao extends EntityDao<Booking> {
 
 }

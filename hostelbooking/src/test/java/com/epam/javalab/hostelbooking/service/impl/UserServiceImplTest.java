@@ -51,50 +51,50 @@ public class UserServiceImplTest {
 
     @Test
     public void createUser_ValidUserGiven_ShouldReturnCreatedUser() throws Exception {
-        when(userDao.createUser(user)).thenReturn(user);
-        User testUser = userService.createUser(user);
+        when(userDao.add(user)).thenReturn(user);
+        User testUser = userService.add(user);
         assertEquals(user.getId(), testUser.getId());
     }
 
     @Test
     public void findUserByLoginAndPassword_ValidCredentialsGiven_ShouldReturnUser() throws Exception {
-        when(userDao.findUserByLoginAndPassword(user.getLogin(), user.getPassword())).thenReturn(user);
-        User testUser = userService.findUserByLoginAndPassword(user.getLogin(), user.getPassword());
+        when(userDao.findByLoginAndPassword(user.getLogin(), user.getPassword())).thenReturn(user);
+        User testUser = userService.findByLoginAndPassword(user.getLogin(), user.getPassword());
         assertEquals(user.getId(), testUser.getId());
     }
 
     @Test(expected = ServiceException.class)
     public void findUserByLoginAndPassword_InvalidCredentialsGiven_ShouldThrowServiceException() throws Exception {
-        when(userDao.findUserByLoginAndPassword(user.getLogin(), user.getPassword())).thenThrow(ServiceException.class);
-        userService.findUserByLoginAndPassword(user.getLogin(), user.getPassword());
+        when(userDao.findByLoginAndPassword(user.getLogin(), user.getPassword())).thenThrow(ServiceException.class);
+        userService.findByLoginAndPassword(user.getLogin(), user.getPassword());
     }
 
     @Test
     public void changeUserPassword_ValidCredentialsGiven_ShouldChangePassword() throws Exception {
-        when(userDao.findUserById(user.getId())).thenReturn(user);
-        when(userDao.updateUserProfile(updatedUser)).thenReturn(updatedUser);
-        User testUser = userService.changeUserPassword(user.getId(), "Mockturtle123");
+        when(userDao.findById(user.getId())).thenReturn(user);
+        when(userDao.update(updatedUser)).thenReturn(updatedUser);
+        User testUser = userService.changePassword(user.getId(), "Mockturtle123");
         assertEquals(user.getPassword(), testUser.getPassword());
     }
 
     @Test
     public void resetUserPassword_ValidCredentialsGiven_ShouldResetPassword() throws Exception {
-        when(userDao.findUserById(user.getId())).thenReturn(user);
-        when(userDao.updateUserProfile(user)).thenReturn(user);
-        when(userDao.updateUserProfile(updatedUser)).thenReturn(updatedUser);
+        when(userDao.findById(user.getId())).thenReturn(user);
+        when(userDao.update(user)).thenReturn(user);
+        when(userDao.update(updatedUser)).thenReturn(updatedUser);
         String resetKey = userService.generateResetKey(user.getId(), user.getLogin(), user.getEmail());
         user.setResetKey(resetKey);
 
-        boolean success = userService.resetUserPassword(user.getId(), user.getResetKey(), "Mockturtle123");
+        boolean success = userService.resetPassword(user.getId(), user.getResetKey(), "Mockturtle123");
         assertTrue(success);
     }
 
     @Test
     public void updateUserProfile_ValidCredentialsGiven_ShouldUpdateProfile() throws Exception {
-        when(userDao.updateUserProfile(user)).thenReturn(user);
-        User updatedUSer = userService.updateUserProfile(user);
+        when(userDao.update(user)).thenReturn(user);
+        User updatedUSer = userService.update(user);
         assertEquals("Galia", updatedUSer.getFirstName());
-        verify(userDao).updateUserProfile(user);
+        verify(userDao).update(user);
     }
 
 }

@@ -24,6 +24,11 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
+    public Place add(Place place) throws ServiceException {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public List<Place> findAll() throws ServiceException {
         try {
             return placeDao.findAll();
@@ -33,18 +38,23 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public List<Place> findPlaceByCity(String city) throws ServiceException {
+    public Place update(Place place) throws ServiceException {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public List<Place> findByCity(String city) throws ServiceException {
         try {
-            return placeDao.findPlaceByCity(city);
+            return placeDao.findByCity(city);
         } catch (DaoException e) {
             throw new ServiceException("Cannot find a place ", e);
         }
     }
 
     @Override
-    public List<Place> findPlaceByMaxPeople(int maxPeopleCount) throws ServiceException {
+    public List<Place> findByMaxPeople(int maxPeopleCount) throws ServiceException {
         try {
-            return placeDao.findPlaceByMaxPeopleCount(maxPeopleCount);
+            return placeDao.findByMaxPeopleCount(maxPeopleCount);
         } catch (DaoException e) {
             throw new ServiceException("Cannot find a place ", e);
         }

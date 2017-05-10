@@ -5,10 +5,9 @@ import com.epam.javalab.hostelbooking.service.exception.ServiceException;
 
 import java.util.List;
 
-public interface PlaceService {
-    List<Place> findAll() throws ServiceException;
+public interface PlaceService extends EntityService<Place> {
 
-    List<Place> findPlaceByCity(String city) throws ServiceException;
+    List<Place> findByCity(String city) throws ServiceException;
 
-    List<Place> findPlaceByMaxPeople(int maxPeopleCount) throws ServiceException;
+    List<Place> findByMaxPeople(int maxPeopleCount) throws ServiceException;
 }

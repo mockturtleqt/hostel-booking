@@ -69,40 +69,40 @@ public class UserDaoImplTest {
     @DatabaseSetup("classpath:beforeUserInsert.xml")
     @Ignore
     @ExpectedDatabase(value = "classpath:afterUserInsert.xml", table = "users", assertionMode = DatabaseAssertionMode.NON_STRICT)
-    public void createUser_ValidCredentialsGiven_ShouldCreateUser() throws DaoException {
-        userDao.createUser(user);
+    public void addUser_ValidCredentialsGiven_ShouldCreateUser() throws DaoException {
+        userDao.add(user);
     }
 
     @Test
     @DatabaseSetup("classpath:userDataSet.xml")
-    public void findUserById_ExistingIdGiven_ShouldReturnUser() throws DaoException {
-        User user = userDao.findUserById(11);
+    public void findById_ExistingIdGiven_ShouldReturnUser() throws DaoException {
+        User user = userDao.findById(11);
         assertEquals(user.getFirstName(), "Galia");
     }
 
     @Test(expected = DaoException.class)
     @DatabaseSetup("classpath:userDataSet.xml")
-    public void findUserById_NonExistingIdGiven_ShouldThrowDaoException() throws DaoException {
-        User user = userDao.findUserById(-11);
+    public void findById_NonExistingIdGiven_ShouldThrowDaoException() throws DaoException {
+        User user = userDao.findById(-11);
     }
 
     @Test
     @DatabaseSetup("classpath:userDataSet.xml")
-    public void findUserByLoginAndPassword_ExistingCredentialsGiven_ShouldReturnUser() throws DaoException {
-        User user = userDao.findUserByLoginAndPassword("galia", "galia");
+    public void findByLoginAndPassword_ExistingCredentialsGiven_ShouldReturnUser() throws DaoException {
+        User user = userDao.findByLoginAndPassword("galia", "galia");
         assertEquals("Galia", user.getFirstName());
     }
 
     @Test(expected = DaoException.class)
     @DatabaseSetup("classpath:userDataSet.xml")
-    public void findUserByLoginAndPassword_NonExistingCredentialsGiven_ShouldThrowDaoException() throws DaoException {
-        User user = userDao.findUserByLoginAndPassword("barney", "stinson");
+    public void findByLoginAndPassword_NonExistingCredentialsGiven_ShouldThrowDaoException() throws DaoException {
+        User user = userDao.findByLoginAndPassword("barney", "stinson");
     }
 
     @Test
     @DatabaseSetup("classpath:userDataSet.xml")
-    public void findAllUsers_ShouldReturnUserList() throws DaoException {
-        List<User> userList = userDao.findAllUsers();
+    public void findAll_ShouldReturnUserList() throws DaoException {
+        List<User> userList = userDao.findAll();
         assertEquals(userList.size(), 11);
     }
 
@@ -110,9 +110,9 @@ public class UserDaoImplTest {
     @DatabaseSetup("classpath:beforeUserUpdate.xml")
     @Ignore
     @ExpectedDatabase(value = "classpath:afterUserUpdate.xml", table = "users", assertionMode = DatabaseAssertionMode.NON_STRICT)
-    public void updateUserProfile_UpdatedProfileGiven_ShouldUpdateUser() throws DaoException {
+    public void update_UpdatedProfileGiven_ShouldUpdateUser() throws DaoException {
         user.setAge(21);
-        userDao.updateUserProfile(user);
+        userDao.update(user);
     }
 
 }

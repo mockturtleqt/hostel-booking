@@ -35,7 +35,7 @@ public class PlaceDaoImpl implements PlaceDao {
     }
 
     @Override
-    public Place findPlaceById(int id) throws DaoException {
+    public Place findById(int id) throws DaoException {
         List<Place> places = jdbcTemplate.query(SQL_FIND_APARTMENT_BY_ID,
                 new Object[]{id}, new PlaceMapper());
         if (!places.isEmpty()) {
@@ -46,7 +46,7 @@ public class PlaceDaoImpl implements PlaceDao {
     }
 
     @Override
-    public List<Place> findPlaceByCity(String city) throws DaoException {
+    public List<Place> findByCity(String city) throws DaoException {
         List<Place> places = jdbcTemplate.query(SQL_FIND_APARTMENT_BY_CITY,
                 new Object[]{city}, new PlaceMapper());
         if (!places.isEmpty()) {
@@ -57,7 +57,7 @@ public class PlaceDaoImpl implements PlaceDao {
     }
 
     @Override
-    public List<Place> findPlaceByMaxPeopleCount(int maxPeopleCount) throws DaoException {
+    public List<Place> findByMaxPeopleCount(int maxPeopleCount) throws DaoException {
         List<Place> places = jdbcTemplate.query(SQL_FIND_APARTMANT_BY_MAX_PEOPLE_COUNT,
                 new Object[]{maxPeopleCount}, new PlaceMapper());
         if (!places.isEmpty()) {
@@ -67,5 +67,14 @@ public class PlaceDaoImpl implements PlaceDao {
         }
     }
 
+    @Override
+    public Place update(Place place) throws DaoException {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Place add(Place place) throws DaoException {
+        throw new UnsupportedOperationException();
+    }
 
 }

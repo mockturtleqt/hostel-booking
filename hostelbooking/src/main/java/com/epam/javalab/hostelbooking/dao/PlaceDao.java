@@ -5,12 +5,9 @@ import com.epam.javalab.hostelbooking.domain.Place;
 
 import java.util.List;
 
-public interface PlaceDao {
-    List<Place> findAll() throws DaoException;
+public interface PlaceDao extends EntityDao<Place> {
 
-    Place findPlaceById(int id) throws DaoException;
+    List<Place> findByCity(String city) throws DaoException;
 
-    List<Place> findPlaceByCity(String city) throws DaoException;
-
-    List<Place> findPlaceByMaxPeopleCount(int maxPeopleCount) throws DaoException;
+    List<Place> findByMaxPeopleCount(int maxPeopleCount) throws DaoException;
 }

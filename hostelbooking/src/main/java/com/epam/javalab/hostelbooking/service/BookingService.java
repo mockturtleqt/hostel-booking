@@ -1,5 +1,7 @@
 package com.epam.javalab.hostelbooking.service;
 
-public interface BookingService {
+import com.epam.javalab.hostelbooking.domain.Booking;
+
+public interface BookingService extends EntityService<Booking> {
 
 }

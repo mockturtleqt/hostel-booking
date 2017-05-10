@@ -59,29 +59,29 @@ public class PlaceServiceImplTest {
     }
 
     @Test
-    public void findPlaceByCity_ExistingCityGiven_ShouldReturnPlaceList() throws Exception {
-        when(placeDao.findPlaceByCity("Grodno")).thenReturn(grodnoApartments);
-        List<Place> testPlaceList = placeService.findPlaceByCity("Grodno");
+    public void findByCity_ExistingCityGiven_ShouldReturnPlaceList() throws Exception {
+        when(placeDao.findByCity("Grodno")).thenReturn(grodnoApartments);
+        List<Place> testPlaceList = placeService.findByCity("Grodno");
         assertEquals(grodnoApartments, testPlaceList);
     }
 
     @Test(expected = ServiceException.class)
-    public void findPlaceByCity_NonExistingCityGiven_ShouldThrowServiceException() throws Exception {
-        when(placeDao.findPlaceByCity("Lalaland")).thenThrow(DaoException.class);
-        placeService.findPlaceByCity("Lalaland");
+    public void findByCity_NonExistingCityGiven_ShouldThrowServiceException() throws Exception {
+        when(placeDao.findByCity("Lalaland")).thenThrow(DaoException.class);
+        placeService.findByCity("Lalaland");
     }
 
     @Test
-    public void findPlaceByMaxPeopleCount_ExistingCapacityGiven_ShouldReturnPlaceList() throws Exception {
-        when(placeDao.findPlaceByMaxPeopleCount(4)).thenReturn(minskApartments);
-        List<Place> testPlaceList = placeService.findPlaceByMaxPeople(4);
+    public void findByMaxPeopleCount_ExistingCapacityGiven_ShouldReturnPlaceList() throws Exception {
+        when(placeDao.findByMaxPeopleCount(4)).thenReturn(minskApartments);
+        List<Place> testPlaceList = placeService.findByMaxPeople(4);
         assertEquals(minskApartments, testPlaceList);
     }
 
     @Test(expected = ServiceException.class)
-    public void findPlaceByMaxPeopleCount_NonExistingCapacityGiven_ShouldThrowServiceException() throws Exception {
-        when(placeDao.findPlaceByMaxPeopleCount(400)).thenThrow(DaoException.class);
-        placeService.findPlaceByMaxPeople(400);
+    public void findByMaxPeopleCount_NonExistingCapacityGiven_ShouldThrowServiceException() throws Exception {
+        when(placeDao.findByMaxPeopleCount(400)).thenThrow(DaoException.class);
+        placeService.findByMaxPeople(400);
     }
 
 }
